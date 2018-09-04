@@ -4,23 +4,23 @@ function Player(game) {
     this.player.src = 'images/player2.png'
 
   // Posicion
-  this.x = this.game.canvas.width * 0,05;
+  this.x = this.game.canvas.width * 0.05;
   //posicion suelo
-  this.y0 = this.game.canvas.height * 0.79;
+  this.y0 = this.game.canvas.height * 0.77;
   this.y = this.y0;
 
   // Nº de imagenes
   this.player.frames = 7;
   this.player.frameIndex = 0;
   //medidas de personaje
-  this.w = 50;
+  this.w = 110;
   this.h = 150;
   
 
 }
 
 Player.prototype.draw = function(){
-    console.log(this.player.frameIndex * Math.floor(this.player.width / this.player.frames))
+    
     this.game.ctx.drawImage(
         this.player,
         this.player.frameIndex * Math.floor(this.player.width / this.player.frames),
@@ -56,7 +56,7 @@ Player.prototype.move = function() {
     //cada 5 cambiar frame
 
     // console.log(this.game.counter)
-    if (this.game.counter % 5 === 0) {
+    if (this.game.counter % 1 === 0) {
          this.player.frameIndex += 1;
   
     //cuando llegue a la ultima posicion volver al principio

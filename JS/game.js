@@ -34,20 +34,20 @@ Game.prototype.moveAll = function() {
     document.onkeyup = function(event) {
         
         if (event.key === jump && this.player.y == this.player.y0) {
-          this.player.y -= 30;
-          this.player.vy -= 10;
-        this.draw();
+            this.player.y -= 30;
+            this.player.vy -= 10;
+            this.draw();
 
         } else if (event.key == 'a') {
-            this.player.x +=4;
-            this.counter +=1; 
-        this.draw();
+            this.player.x +=2;
+            this.counter +=2; 
+            this.draw();
 
         
         } else if (event.key == 's') {
-            this.player.x +=4;
-            this.counter +=1;
-        this.draw();
+            this.player.x +=2;
+            this.counter +=2;
+            this.draw();
             
         }
       }.bind(this);
