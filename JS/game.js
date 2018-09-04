@@ -5,7 +5,16 @@ function Game(canvadId) {
 }
 
 Game.prototype.start=function(){
-    var background = new Background(this);
+    var player = new Player(this);
+    var background = new Background(this,player);
 
     background.draw();
+    this.move();
+}
+Game.prototype.draw = function() {
+    this.background.draw();
+}
+Game.prototype.move = function() {
+    
+    this.player.move();
 }
