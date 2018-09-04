@@ -15,6 +15,7 @@ function Player(game) {
   //medidas de personaje
   this.w = 50;
   this.h = 120;
+  
 
 }
 
@@ -30,8 +31,8 @@ Player.prototype.draw = function(){
         this.w,
         this.h
       );
-
 }
+
 Player.prototype.move = function() {
     // Aumenta la velocidad en el eje y.
     var gravity = 0.4;
@@ -44,4 +45,13 @@ Player.prototype.move = function() {
       this.vy += gravity;
       this.y += this.vy;
     }
+    console.log(this.x)
+  };
+
+  var jump = "w";
+  var runA = "a";
+  var runS ="b";
+
+  Player.prototype.setListeners = function() {
+   
   };
