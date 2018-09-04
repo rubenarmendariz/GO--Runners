@@ -21,8 +21,7 @@ function Player(game) {
 
 Player.prototype.draw = function(){
     
-    this.game.ctx.drawImage(
-        this.player,
+    this.game.ctx.drawImage(this.player,
         this.player.frameIndex * Math.floor(this.player.width / this.player.frames),
         0,
         Math.floor(this.player.width / this.player.frames),
@@ -53,7 +52,6 @@ Player.prototype.move = function() {
   
 
   Player.prototype.animateImg = function() {
-    //cada 5 cambiar frame
 
     // console.log(this.game.counter)
     if (this.game.counter % 1 === 0) {
