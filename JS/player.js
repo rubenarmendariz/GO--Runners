@@ -1,7 +1,7 @@
 function Player(game) {
     this.game = game;
     this.player = new Image();
-    this.player.src = 'images/Player1.png'
+    this.player.src = 'images/player2.png'
 
   // Posicion
   this.x = this.game.canvas.width * 0,05;
@@ -14,12 +14,13 @@ function Player(game) {
   this.player.frameIndex = 0;
   //medidas de personaje
   this.w = 50;
-  this.h = 120;
+  this.h = 150;
   
 
 }
 
 Player.prototype.draw = function(){
+    console.log(this.player.frameIndex * Math.floor(this.player.width / this.player.frames))
     this.game.ctx.drawImage(
         this.player,
         this.player.frameIndex * Math.floor(this.player.width / this.player.frames),
@@ -31,11 +32,12 @@ Player.prototype.draw = function(){
         this.w,
         this.h
       );
-}
+      this.animateImg();
+};
 
 Player.prototype.move = function() {
     // Aumenta la velocidad en el eje y.
-    var gravity = 0.4;
+     var gravity = 0.4;
   
     // solo salta cuando el personaje está en el suelo
     if (this.y >= this.y0) {
@@ -46,12 +48,18 @@ Player.prototype.move = function() {
       this.y += this.vy;
     }
     console.log(this.x)
-  };
+  }
 
-  var jump = "w";
-  var runA = "a";
-  var runS ="b";
+  
 
-  Player.prototype.setListeners = function() {
-   
+  Player.prototype.animateImg = function() {
+    //cada 5 cambiar frame
+
+    // console.log(this.game.counter)
+    if (this.game.counter % 5 === 0) {
+         this.player.frameIndex += 1;
+  
+    //cuando llegue a la ultima posicion volver al principio
+      if (this.player.frameIndex > 6) this.player.frameIndex = 1;
+    }
   };

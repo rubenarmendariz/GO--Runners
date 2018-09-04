@@ -25,6 +25,12 @@ function Background(game,player) {
 }
 Background.prototype.draw = function () {
     this.sky.onload = function () {
+        this.draw2();
+            this.player.draw()
+    }.bind(this);
+};
+
+Background.prototype.draw2 = function () {
         for(i=0; i<13 ;i++){           
             this.game.ctx.drawImage(this.publiUpper,     0+i*80, 280, 80, 10);
             this.game.ctx.drawImage(this.grada,          0+i*80, 290, 80, 50);
@@ -35,8 +41,5 @@ Background.prototype.draw = function () {
             this.game.ctx.drawImage(this.img,            0+i*80, 650, 80, 100);
             }
             this.game.ctx.drawImage(this.sky,0, 0, 1000, 280);
-            this.player.draw()
-    }.bind(this);
+            // this.player.draw()
 };
-
-
