@@ -1,3 +1,16 @@
 #canvas {
     border:5px solid black;
 }
+/* body {
+    background-image: url("../images/portada.jpg");
+    background-size: cover;
+    display: none;
+}
+
+.start {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translateX(-50%);
+    display: none;
+} */

@@ -2,7 +2,12 @@
 function Game(canvadId) {
     this.canvas = document.getElementById("canvas");
     this.ctx = this.canvas.getContext("2d");
-    this.counter = 0;
+    this.counter = 1;
+    console.log(this.counter)
+
+    this.reset();//llamar a this.reset()
+    this.fps = 60;
+    this.framesCounter = 0;
 };
 
 Game.prototype.draw = function() {
@@ -11,14 +16,21 @@ Game.prototype.draw = function() {
     this.player.draw();
 };
 
-Game.prototype.start=function() {
+Game.prototype.reset = function(){
     this.player = new Player(this);
     this.background = new Background(this,this.player);
+}
+
+Game.prototype.start = function() {
     this.background.draw();
-    this.draw();
-    this.moveAll();
-    this.framesCounter++;
- };
+    this.interval = setInterval(function() {
+        this.draw();
+        this.moveAll();
+        this.framesCounter++;
+        
+    
+ }.bind(this), 1000 / this.fps);
+}
     
 var jump = "w";
 var runA = "a";
@@ -29,33 +41,33 @@ Game.prototype.moveAll = function() {
         if (event.key === jump && this.player.y == this.player.y0) {
             //this.player.player = this.player.jump;
             this.player.player.src = 'images/jump1.png';
-            this.player.y -= 100;
+            this.player.y -= 125;
             this.player.vy -= 10;
-            this.background.positionFrame -= 40;
+            this.background.positionFrame -= 50;
             this.player.isJumping = true;
-            this.draw();
+            this.player.animateImg();
 
             setTimeout(function() {
-                
                 this.player.player.src = 'images/player2.png';
-                this.player.y += 100;
-                this.background.positionFrame -= 40;
+                this.player.y += 125;
+                this.background.positionFrame -= 50;
                 this.player.isJumping = false;
-                this.draw();
-            }.bind(this), 500);
+                this.player.animateImg();
+
+            }.bind(this), 1000);
+
         } else if (event.key == 'a') {
-            this.player.x +=3;
+            this.player.x +=2;
             this.counter +=2; 
             this.background.positionFrame -= 10;
-            this.draw();
+            this.player.animateImg();
 
         
         } else if (event.key == 's') {
-            this.player.x +=3;
+            this.player.x +=2;
             this.counter +=2;
             this.background.positionFrame -= 10;
-            this.draw();
-            
+            this.player.animateImg();
         }
     }.bind(this);
    
