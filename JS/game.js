@@ -2,7 +2,7 @@
 function Game(canvadId) {
     this.canvas = document.getElementById("canvas");
     this.ctx = this.canvas.getContext("2d");
-    this.counter = 1;
+    this.counter = 0;
 };
 
 Game.prototype.draw = function() {
@@ -27,10 +27,22 @@ Game.prototype.moveAll = function() {
     document.onkeyup = function(event) {
         
         if (event.key === jump && this.player.y == this.player.y0) {
-            this.player.y -= 30;
+            //this.player.player = this.player.jump;
+            this.player.player.src = 'images/jump1.png';
+            this.player.y -= 100;
             this.player.vy -= 10;
+            this.background.positionFrame -= 40;
+            this.player.isJumping = true;
             this.draw();
 
+            setTimeout(function() {
+                
+                this.player.player.src = 'images/player2.png';
+                this.player.y += 100;
+                this.background.positionFrame -= 40;
+                this.player.isJumping = false;
+                this.draw();
+            }.bind(this), 500);
         } else if (event.key == 'a') {
             this.player.x +=3;
             this.counter +=2; 
@@ -47,5 +59,6 @@ Game.prototype.moveAll = function() {
         }
     }.bind(this);
    
+    
 };
 

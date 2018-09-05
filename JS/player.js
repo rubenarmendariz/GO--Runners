@@ -2,6 +2,8 @@ function Player(game) {
     this.game = game;
     this.player = new Image();
     this.player.src = 'images/player2.png'
+    this.jump = new Image();
+    this.jump.src = 'images/jump1.png'
 
   // Posicion
   this.x = this.game.canvas.width * 0.05;
@@ -16,11 +18,12 @@ function Player(game) {
   this.w = 110;
   this.h = 150;
   
-
+  this.isJumping = false;
 }
 
 Player.prototype.draw = function(){
-    
+    if(!this.isJumping) {
+
     this.game.ctx.drawImage(this.player,
         this.player.frameIndex * Math.floor(this.player.width / this.player.frames),
         0,
@@ -32,9 +35,12 @@ Player.prototype.draw = function(){
         this.h
       );
       this.animateImg();
+    } else {
+      this.game.ctx.drawImage(this.player, this.x, this.y, this.w, this.h);
+    }
 };
 
-Player.prototype.move = function() {
+/* Player.prototype.move = function() {
     // Aumenta la velocidad en el eje y.
      var gravity = 0.4;
   
@@ -47,7 +53,7 @@ Player.prototype.move = function() {
       this.y += this.vy;
     }
     console.log(this.x)
-  }
+  } */
 
   
 

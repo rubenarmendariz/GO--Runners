@@ -4,7 +4,7 @@ function Background(game,player) {
     this.player = player;
     
     this.positionFrame = 0;
-    console.log(this.positionFrame);
+    //console.log(this.positionFrame);
     this.img = new Image();
     this.img.src = 'images/road.png';
     this.garden = new Image();
@@ -59,9 +59,7 @@ Background.prototype.draw2 = function () {
 };
 
 Background.prototype.moveFrame = function() {
-   
-  
-    if (this.positionFrame < -this.game.canvas.width) { this.positionFrame = 0;
+   if (this.positionFrame < -this.game.canvas.width) { this.positionFrame = 0;
   };
   
 }
