@@ -34,15 +34,18 @@ Game.prototype.moveAll = function() {
         } else if (event.key == 'a') {
             this.player.x +=3;
             this.counter +=2; 
+            this.background.positionFrame -= 10;
             this.draw();
 
         
         } else if (event.key == 's') {
             this.player.x +=3;
             this.counter +=2;
+            this.background.positionFrame -= 10;
             this.draw();
             
         }
     }.bind(this);
+   
 };
 
