@@ -55,7 +55,7 @@ Game.prototype.moveAll = function () {
                 this.player.isJumping = false;
                 this.player.animateImg();
 
-            }.bind(this), 1000);
+            }.bind(this), 600);
 
         } else if (event.key == 'a') {
             this.player.x += 2;
@@ -80,11 +80,10 @@ Game.prototype.isCollision = function () {
     if (this.player.x > this.background.positionFrame + 1000
         && this.player.x < (this.background.positionFrame + 1000 + this.background.wHurdles)
         && this.player.y + 23 >= this.background.hHurdles) {
-    
         this.background.hurdlesFrame(true)
+        this.player.x -= 2;
     } else {
         this.background.hurdlesFrame(false)
     }
 
 }
-

@@ -57,8 +57,6 @@ Player.prototype.draw = function(){
   
 
   Player.prototype.animateImg = function() {
-
-    console.log(this.game.counter)
     if (this.game.counter % 1 === 0) {
          this.player.frameIndex += 1;
   
