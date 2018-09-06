@@ -9,7 +9,8 @@ function Background(game, player) {
     this.endIndex = 0;
     this.wEnd = 160;
     this.hEnd = 520;
-    this.counter = 0;
+    this.counter = -1;
+    this.end = 5; //Distancio meta
     this.sumHurdles = true;
     var images = {
         road: 'images/road.png',
@@ -65,17 +66,21 @@ Background.prototype.draw2 = function () {
         ctx.drawImage(img.text, frm + 275, 375, 500, 15)
         ctx.drawImage(img.text, frm + 275 + cWidth, 375, 500, 15)
 
-    if (this.counter == 10) {
+    if (this.counter == this.end) {
         ctx.drawImage(img.end, 24 * this.endIndex, 0, 25, 41, frm + cWidth, 574, 100, 177)
-    } else {console.log(this.sumHurdles , this.player.x , frm + 1000 )
+    } else {
         ctx.drawImage(img.hurdles, 41 * this.vallaindex, 0, 41, 46, frm + 1000, this.hHurdles, this.wHurdles, 194);
         if (this.sumHurdles && this.player.x < frm + 1000) {
         
             this.counter +=1 ;
+            // this.game.score= this.counter*100;
+            this.game.ctx.fillText('this.game.score', 50, 50);
+            
             this.sumHurdles = false;
         } if (this.sumHurdles == false && this.player.x > frm + 1000) {
             this.sumHurdles = true;
-        }console.log(this.counter)
+            this.game.ctx.fillText(this.game.score, 20, 20);
+        }
     }
     
     this.moveFrame();

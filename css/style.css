@@ -1,16 +1,37 @@
-/* #canvas {
-    border:5px solid black;
+#canvas {
+    height: 100vh;
+    width: 100vw;
 }
-body {
-    background-image: url("../images/portada.jpg");
-    background-size: cover;
+
+#game {
+   
     display: none;
 }
 
-.start {
+#active{
+    display:block;
+}
+
+#none{
+    display: none;
+}
+
+#game-start{
+    width: 100vw;
+    background-image: url(../images/portada.jpg);
+    background-size: cover;
+    height: 100vh;
+}
+#btn{
     position: absolute;
     left: 50%;
     top: 60%;
     transform: translateX(-50%);
-    display: none;
-} */
+}
+
+
+.start {
+    
+    display: block;
+    
+}
