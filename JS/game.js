@@ -7,14 +7,15 @@ function Game(canvadId) {
     this.reset();
     this.fps = 60;
     this.framesCounter = 0;
-
-    //This.record = this.min+ " : "+ this.sec;
-
+    this.soundGame = new Audio();
+    this.soundGame.src = "audio/game.mp3"
+    this.soundGame.play();
+    this.sfx = new Audio();
+    this.sfx.src = "audio/sfx.mp3";
     this.sec = 0;
     this.time = this.sec + " : " + this.framesCounter;
-    console.log(this.time);
-
 };
+
 
 Game.prototype.draw = function () {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -22,10 +23,12 @@ Game.prototype.draw = function () {
     this.player.draw();
 };
 
+
 Game.prototype.reset = function () {
     this.player = new Player(this);
     this.background = new Background(this, this.player);
-}
+};
+
 
 Game.prototype.start = function () {
     this.background.draw2();
@@ -36,23 +39,16 @@ Game.prototype.start = function () {
         this.framesCounter++;
         this.ctx.fillText(this.score, 200, 108);
         this.ctx.fillText(this.time, 657, 175);
-        console.log(this.time)
         this.time = this.sec + ":" + this.framesCounter;
-
-
+        this.ctx.fillStyle = 'white';
+        this.ctx.font = "40px arcadeclassic"
         if (this.framesCounter > 99) {
             this.framesCounter = 0
             this.sec++
         }
-        this.ctx.fillStyle = 'white';
-
-        this.ctx.font = "40px arcadeclassic"
-        //this.ctx.fillText(this.time,670,170)
-        if (this.background.endIndex === 1) {
-
-        }
     }.bind(this), 1000 / this.fps);
-}
+};
+
 
 var jump = "w";
 var runA = "a";
@@ -92,9 +88,8 @@ Game.prototype.moveAll = function () {
             this.player.animateImg();
         }
     }.bind(this);
-
-
 };
+
 
 Game.prototype.isCollision = function () {
     var collision = false;
@@ -103,14 +98,19 @@ Game.prototype.isCollision = function () {
         && this.player.y + 23 >= this.background.hHurdles) {
         if (this.background.counter == this.background.end) {
             clearInterval(this.interval);
+            this.background.endIndex = 1;
+            this.background.draw2();
+            this.player.draw();
             
+            
+
+
         } else {
             this.background.hurdlesFrame(true)
-            this.player.x -= 2;
+            this.player.x -= 3;
         }
     } else {
         this.score++;
         this.background.hurdlesFrame(false)
     }
-
-}
+};

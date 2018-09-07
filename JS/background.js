@@ -32,12 +32,7 @@ function Background(game, player) {
         imagen.src = images[e];
         that.loadedImages[e] = imagen;
     });
-
-
 }
-
-
-//draw para pintar la primera vez sino hago draw2 pierdo imagen de fondo
 
 
 Background.prototype.draw2 = function () {

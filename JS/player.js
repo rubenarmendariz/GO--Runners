@@ -30,10 +30,10 @@ Player.prototype.draw = function(){
         this.player.height,
         this.x,
         this.y,
-        this.w,
+        this.w, 
         this.h
       );
-      //this.animateImg();
+      
     } else {
       this.game.ctx.drawImage(this.player, this.x, this.y, this.w, this.h);
     }
