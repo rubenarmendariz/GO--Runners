@@ -4,17 +4,16 @@ function Game(canvadId) {
     this.ctx = this.canvas.getContext("2d");
     this.counter = 1;
     this.score = 0;
-
-    this.reset();//llamar a this.reset()
+    this.reset();
     this.fps = 60;
     this.framesCounter = 0;
- 
+
     //This.record = this.min+ " : "+ this.sec;
-    
+
     this.sec = 0;
-    this.time = this.sec + ":" + this.framesCounter;
+    this.time = this.sec + " : " + this.framesCounter;
     console.log(this.time);
-    
+
 };
 
 Game.prototype.draw = function () {
@@ -29,33 +28,29 @@ Game.prototype.reset = function () {
 }
 
 Game.prototype.start = function () {
-    this.background.draw();
+    this.background.draw2();
     this.interval = setInterval(function () {
         this.draw();
         this.isCollision();
         this.moveAll();
         this.framesCounter++;
         this.ctx.fillText(this.score, 200, 108);
-        this.ctx.fillText(this.time,657,175);
+        this.ctx.fillText(this.time, 657, 175);
         console.log(this.time)
         this.time = this.sec + ":" + this.framesCounter;
-        
-         
-         if (this.framesCounter > 99) {
+
+
+        if (this.framesCounter > 99) {
             this.framesCounter = 0
             this.sec++
         }
-        this.ctx.fillStyle='white';
-        
+        this.ctx.fillStyle = 'white';
+
         this.ctx.font = "40px arcadeclassic"
         //this.ctx.fillText(this.time,670,170)
         if (this.background.endIndex === 1) {
-            
-        }  
-        
 
-
-
+        }
     }.bind(this), 1000 / this.fps);
 }
 
@@ -106,13 +101,13 @@ Game.prototype.isCollision = function () {
     if (this.player.x > this.background.positionFrame + 1000
         && this.player.x < (this.background.positionFrame + 1000 + this.background.wHurdles)
         && this.player.y + 23 >= this.background.hHurdles) {
-            if(this.background.counter == this.background.end){
-                clearInterval(this.interval);
-                console.log("Entra")
-            }else{
-                this.background.hurdlesFrame(true)
-                this.player.x -= 2;
-            }
+        if (this.background.counter == this.background.end) {
+            clearInterval(this.interval);
+            
+        } else {
+            this.background.hurdlesFrame(true)
+            this.player.x -= 2;
+        }
     } else {
         this.score++;
         this.background.hurdlesFrame(false)

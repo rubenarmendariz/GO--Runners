@@ -10,7 +10,7 @@ function Background(game, player) {
     this.wEnd = 160;
     this.hEnd = 520;
     this.counter = -1;
-    this.end = 5; //Distancio meta
+    this.end = 8; //Distancio meta
     this.sumHurdles = true;
     var images = {
         road: 'images/road.png',
@@ -38,9 +38,7 @@ function Background(game, player) {
 
 
 //draw para pintar la primera vez sino hago draw2 pierdo imagen de fondo
-Background.prototype.draw = function () {
 
-};
 
 Background.prototype.draw2 = function () {
     var img = this.loadedImages;
@@ -60,31 +58,28 @@ Background.prototype.draw2 = function () {
         ctx.drawImage(img.road, 0 + i * 80, 650, 80, 100);
     }
 
-        ctx.drawImage(img.sky, frm, 0, 1000, 280);
-        ctx.drawImage(img.sky, frm + cWidth, 0, 1000, 280);
-        ctx.drawImage(img.score, 50, 20, 900, 240)
-        ctx.drawImage(img.text, frm + 275, 375, 500, 15)
-        ctx.drawImage(img.text, frm + 275 + cWidth, 375, 500, 15)
+    ctx.drawImage(img.sky, frm, 0, 1000, 280);
+    ctx.drawImage(img.sky, frm + cWidth, 0, 1000, 280);
+    ctx.drawImage(img.score, 50, 20, 900, 240)
+    ctx.drawImage(img.text, frm + 275, 375, 500, 15)
+    ctx.drawImage(img.text, frm + 275 + cWidth, 375, 500, 15)
 
     if (this.counter == this.end) {
         ctx.drawImage(img.end, 24 * this.endIndex, 0, 25, 41, frm + cWidth, 574, 100, 177)
     } else {
         ctx.drawImage(img.hurdles, 41 * this.vallaindex, 0, 41, 46, frm + 1000, this.hHurdles, this.wHurdles, 194);
         if (this.sumHurdles && this.player.x < frm + 1000) {
-        
-            this.counter +=1 ;
-            // this.game.score= this.counter*100;
-            this.game.ctx.fillText('this.game.score', 50, 50);
-            
+            this.counter += 1;
             this.sumHurdles = false;
+
         } if (this.sumHurdles == false && this.player.x > frm + 1000) {
             this.sumHurdles = true;
-            this.game.ctx.fillText(this.game.score, 20, 20);
+            
         }
     }
-    
+
     this.moveFrame();
-   
+
 };
 
 Background.prototype.moveFrame = function () {

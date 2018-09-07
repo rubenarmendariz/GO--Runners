@@ -39,20 +39,6 @@ Player.prototype.draw = function(){
     }
 };
 
-/* Player.prototype.move = function() {
-    // Aumenta la velocidad en el eje y.
-     var gravity = 0.4;
-  
-    // solo salta cuando el personaje está en el suelo
-    if (this.y >= this.y0) {
-      this.vy = 1;
-      this.y = this.y0;
-    } else {
-      this.vy += gravity;
-      this.y += this.vy;
-    }
-    console.log(this.x)
-  } */
 
   
 
