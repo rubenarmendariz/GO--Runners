@@ -10,8 +10,8 @@ function Game(canvadId) {
     this.soundGame = new Audio();
     this.soundGame.src = "audio/game.mp3"
     this.soundGame.play();
-    this.sfx = new Audio();
-    this.sfx.src = "audio/sfx.mp3";
+    this.end = new Audio();
+    this.end.src = "audio/end.mp3";
     this.sec = 0;
     this.time = this.sec + " : " + this.framesCounter;
 };
@@ -101,6 +101,8 @@ Game.prototype.isCollision = function () {
             this.background.endIndex = 1;
             this.background.draw2();
             this.player.draw();
+            this.end.play();
+            
             
             
 
